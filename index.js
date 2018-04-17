@@ -13,14 +13,29 @@ function increaseRankBy(n){
   }
 }
 
+
+
+
+
 function deepestChild(){
-  let arr = document.querySelector('div#grand-node').querySelectorAll('div'); 
-  return arr[arr.length-1]; 
-  /*
-    since the first line sorts out all the children of grand-node into an array of
-    [div, div, div, div]
-    and we only need to solve for the base case, just grab the last node.
-  */
+  let arr = document.querySelector('div#grand-node').querySelectorAll('div');
+  let current = arr;
+  let next = [];
+  
+  let check = n => n.firstChild; //if false it would return true so it would return that one.
+
+  while(current){
+    if(!check(current)){
+      return current;
+    }
+    if(Array.isArray(current)){
+      for(var i = 0; i < current.length; i++){
+        next.push(current[i]);
+      }
+    }
+    current = next.shift();
+  }
+  return null;
   
 }
 
